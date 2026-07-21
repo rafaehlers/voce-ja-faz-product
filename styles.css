@@ -203,7 +203,7 @@ tbody tr:nth-child(even) { background: color-mix(in srgb, var(--indigo-soft) 25%
 @page {
   size: A4;
   margin: 19mm 17mm 21mm;
-  @top-center { content: "Product Management para quem nunca estudou Product"; color: #666; font: 7pt system-ui, sans-serif; }
+  @top-center { content: "Você Já Faz Product"; color: #666; font: 7pt system-ui, sans-serif; }
   @bottom-left { content: "Rafael de Menezes Ehlers"; color: #666; font: 7pt system-ui, sans-serif; }
   @bottom-center { content: counter(page); color: #666; font: 7pt system-ui, sans-serif; }
 }

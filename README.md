@@ -1,4 +1,4 @@
-# Product Management para quem nunca estudou Product
+# Você Já Faz Product
 
 Livro digital estático, escrito em português do Brasil e projetado para leitura no navegador, impressão em A4 ou exportação como PDF.
 
