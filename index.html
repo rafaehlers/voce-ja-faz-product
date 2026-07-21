@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Um manual de tradução entre experiência prática e a linguagem profissional de Product Management.">
+  <title>Product Management para quem nunca estudou Product</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="reading-progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <header class="book-toolbar" aria-label="Controles do livro">
+    <button id="menuButton" class="toolbar-button mobile-only" type="button" aria-controls="sidebar" aria-expanded="false">Sumário</button>
+    <div class="search-wrap" role="search">
+      <label class="visually-hidden" for="searchInput">Buscar no livro</label>
+      <input id="searchInput" type="search" placeholder="Buscar termo ou conceito" autocomplete="off">
+      <span id="searchStatus" class="search-status" aria-live="polite"></span>
+    </div>
+    <button id="themeButton" class="toolbar-button" type="button" aria-label="Alternar tema">Tema escuro</button>
+    <button id="printButton" class="toolbar-button" type="button">Imprimir / PDF</button>
+  </header>
+
+  <aside id="sidebar" class="sidebar" aria-label="Sumário">
+    <a class="book-mark" href="#capa"><span>PM</span> para quem nunca estudou Product</a>
+    <nav id="toc" class="toc"></nav>
+  </aside>
+
+  <main id="conteudo" class="book-content">
+    <section id="capa" class="cover chapter" data-title="Capa">
+      <p class="eyebrow">Primeira edição</p>
+      <h1>Product Management<br>para quem nunca<br>estudou Product</h1>
+      <p class="cover-subtitle">Como transformar experiência prática, intuição de negócio e conhecimento de clientes em linguagem profissional de Product Management</p>
+      <p class="author">Rafael de Menezes Ehlers</p>
+    </section>
+
+    <section id="abertura" class="chapter" data-title="Nota ao leitor"></section>
+    <section id="introducao" class="chapter" data-title="Introdução — Você provavelmente já faz Product Management"></section>
+
+    <div id="bookChapters"></div>
+
+    <section id="conclusao" class="chapter" data-title="Conclusão — Você não estava começando do zero"></section>
+  </main>
+
+  <button id="topButton" class="top-button" type="button" aria-label="Voltar ao topo">↑</button>
+  <div id="searchDialog" class="search-dialog" hidden>
+    <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchDialogTitle">
+      <div class="search-panel-head">
+        <h2 id="searchDialogTitle">Resultados da busca</h2>
+        <button id="closeSearch" type="button" aria-label="Fechar resultados">Fechar</button>
+      </div>
+      <div id="searchResults"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
