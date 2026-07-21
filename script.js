@@ -32,6 +32,7 @@ function updateReadingPosition() {
 }
 
 function renderBook() {
+  BOOK_PARTS.sort((a, b) => Number(a.id.split('-')[1]) - Number(b.id.split('-')[1]));
   document.getElementById('abertura').innerHTML = openingContent;
   document.getElementById('introducao').innerHTML = introductionContent;
   document.getElementById('conclusao').innerHTML = conclusionContent;

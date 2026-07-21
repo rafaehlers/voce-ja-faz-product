@@ -30,7 +30,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: 18px; line-height: 1.72; text-rendering: optimizeLegibility; }
+body { margin: 0; overflow-x: clip; background: var(--paper); color: var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: 18px; line-height: 1.72; text-rendering: optimizeLegibility; }
 button, input { font: inherit; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .skip-link { position: fixed; left: 1rem; top: -4rem; z-index: 100; background: var(--ink); color: var(--paper); padding: .75rem 1rem; }
@@ -186,7 +186,10 @@ tbody tr:nth-child(even) { background: color-mix(in srgb, var(--indigo-soft) 25%
   .cover h1 { font-size: clamp(2.8rem, 14vw, 5rem); }
   .chapter h2 { font-size: clamp(2.4rem, 12vw, 4rem); }
   .part-opening h2 { font-size: clamp(3rem, 15vw, 5rem); }
-  .table-wrap, .request-flow, .metric-flow, .interview-framework, .icp-persona { width: calc(100vw - 1rem); }
+  .table-wrap, .request-flow, .metric-flow, .interview-framework, .icp-persona { width: 100%; max-width: 100%; margin-left: 0; transform: none; }
+  .table-wrap { contain: inline-size; }
+  table { table-layout: fixed; }
+  th, td { padding: .55rem .4rem; overflow-wrap: anywhere; }
   .request-flow, .interview-framework, .icp-persona { flex-direction: column; align-items: stretch; }
   .request-flow .arrow, .interview-framework .arrow { transform: rotate(90deg); }
   .comparison, .scenario-grid, .risk-grid, .term-grid { grid-template-columns: 1fr; }
@@ -197,7 +200,13 @@ tbody tr:nth-child(even) { background: color-mix(in srgb, var(--indigo-soft) 25%
   .chapter-navigation a:last-child { text-align: left; }
 }
 
-@page { size: A4; margin: 19mm 17mm 21mm; @bottom-center { content: counter(page); } }
+@page {
+  size: A4;
+  margin: 19mm 17mm 21mm;
+  @top-center { content: "Product Management para quem nunca estudou Product"; color: #666; font: 7pt system-ui, sans-serif; }
+  @bottom-left { content: "Rafael de Menezes Ehlers"; color: #666; font: 7pt system-ui, sans-serif; }
+  @bottom-center { content: counter(page); color: #666; font: 7pt system-ui, sans-serif; }
+}
 @media print {
   .book-toolbar, .sidebar, .reading-progress, .top-button, .search-dialog, .skip-link { display: none !important; }
   body { background: white; color: black; font-size: 10.5pt; }
