@@ -90,8 +90,11 @@ function findFirstTermOccurrence(entry) {
 
       for (const alias of aliases) {
         const escaped = alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const match = node.textContent.match(new RegExp(`\\b${escaped}\\b`, 'i'));
-        if (match) return { node, index: match.index, length: match[0].length, label: match[0] };
+        const match = node.textContent.match(new RegExp(`(^|[^\\p{L}\\p{N}_])(${escaped})(?![\\p{L}\\p{N}_])`, 'iu'));
+        if (match) {
+          const prefixLength = match[1].length;
+          return { node, index: match.index + prefixLength, length: match[2].length, label: match[2] };
+        }
       }
     }
   }
