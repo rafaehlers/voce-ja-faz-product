@@ -86,7 +86,7 @@ function findFirstTermOccurrence(entry) {
     let node;
     while ((node = walker.nextNode())) {
       const parent = node.parentElement;
-      if (!parent || parent.closest('a, script, style, .term-introduction, .chapter-navigation')) continue;
+      if (!parent || parent.closest('a, button, script, style, .term-popover, .chapter-navigation')) continue;
 
       for (const alias of aliases) {
         const escaped = alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -103,28 +103,112 @@ function findFirstTermOccurrence(entry) {
 
 function enhanceGlossaryTerms() {
   const orderedEntries = [...GLOSSARY].sort((a, b) => Math.max(b[0].length, b[1]?.length || 0) - Math.max(a[0].length, a[1]?.length || 0));
+  const popover = document.createElement('aside');
+  popover.id = 'termPopover';
+  popover.className = 'term-popover';
+  popover.setAttribute('role', 'dialog');
+  popover.setAttribute('aria-modal', 'false');
+  popover.setAttribute('aria-labelledby', 'termPopoverTitle');
+  popover.hidden = true;
+  document.body.append(popover);
+
+  let activeTrigger = null;
+  let hideTimer = 0;
+  let suppressFocusOpen = false;
+
+  const clearPendingHide = () => clearTimeout(hideTimer);
+  const positionPopover = trigger => {
+    const margin = 16;
+    const gap = 10;
+    const triggerRect = trigger.getBoundingClientRect();
+    const width = Math.min(720, innerWidth - margin * 2);
+    popover.style.width = `${width}px`;
+    const height = popover.offsetHeight;
+    const roomBelow = innerHeight - triggerRect.bottom - margin;
+    const roomAbove = triggerRect.top - margin;
+    const left = Math.min(innerWidth - width - margin, Math.max(margin, triggerRect.left + triggerRect.width / 2 - width / 2));
+    const top = roomBelow >= height
+      ? triggerRect.bottom + gap
+      : roomAbove >= height
+        ? triggerRect.top - height - gap
+        : margin;
+    popover.style.left = `${left}px`;
+    popover.style.top = `${top}px`;
+  };
+  const hidePopover = ({ restoreFocus = false } = {}) => {
+    clearPendingHide();
+    if (!activeTrigger) return;
+    const previousTrigger = activeTrigger;
+    previousTrigger.setAttribute('aria-expanded', 'false');
+    activeTrigger = null;
+    popover.hidden = true;
+    if (restoreFocus) {
+      suppressFocusOpen = true;
+      previousTrigger.focus();
+      suppressFocusOpen = false;
+    }
+  };
+  const scheduleHide = () => {
+    clearPendingHide();
+    hideTimer = setTimeout(() => hidePopover(), 180);
+  };
+  const showPopover = (trigger, entry) => {
+    clearPendingHide();
+    if (activeTrigger && activeTrigger !== trigger) activeTrigger.setAttribute('aria-expanded', 'false');
+    activeTrigger = trigger;
+    trigger.setAttribute('aria-expanded', 'true');
+    popover.innerHTML = termPopoverHtml(entry);
+    popover.hidden = false;
+    positionPopover(trigger);
+    popover.querySelector('.term-popover-close').addEventListener('click', () => hidePopover({ restoreFocus: true }));
+    popover.querySelector('a').addEventListener('click', () => hidePopover());
+  };
+
+  popover.addEventListener('pointerenter', clearPendingHide);
+  popover.addEventListener('pointerleave', scheduleHide);
+  popover.addEventListener('focusin', clearPendingHide);
+  popover.addEventListener('focusout', event => {
+    if (!popover.contains(event.relatedTarget)) scheduleHide();
+  });
 
   orderedEntries.forEach(entry => {
     const occurrence = findFirstTermOccurrence(entry);
     if (!occurrence) return;
 
     const { node, index, length, label } = occurrence;
-    const link = document.createElement('a');
-    link.className = 'term-link';
-    link.href = `#term-${termSlug(entry[0])}`;
-    link.textContent = label;
-    link.setAttribute('aria-label', `${label}: ver tradução e definição no glossário`);
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'term-link';
+    trigger.textContent = label;
+    trigger.setAttribute('aria-label', `${label}: mostrar tradução e explicação`);
+    trigger.setAttribute('aria-controls', 'termPopover');
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.addEventListener('pointerenter', () => showPopover(trigger, entry));
+    trigger.addEventListener('pointerleave', scheduleHide);
+    trigger.addEventListener('focus', () => {
+      if (!suppressFocusOpen) showPopover(trigger, entry);
+    });
+    trigger.addEventListener('blur', event => {
+      if (!popover.contains(event.relatedTarget)) scheduleHide();
+    });
+    trigger.addEventListener('click', event => {
+      event.stopPropagation();
+      showPopover(trigger, entry);
+      if (event.detail === 0) popover.querySelector('.term-popover-close').focus();
+    });
 
     const before = node.textContent.slice(0, index);
     const after = node.textContent.slice(index + length);
-    const structuredContainer = node.parentElement.closest('.diagram, .table-wrap, .comparison, .scenario-grid, .risk-grid, .term-grid, .experiment-brief, .decision-checklist, .interview-case, .experiment-ladder');
-    const localBlock = node.parentElement.closest('p, li, dd, blockquote, .callout') || node.parentElement;
-    const block = structuredContainer || (localBlock.matches('li, dd') ? (localBlock.closest('ul, ol, dl') || localBlock) : localBlock);
-    node.replaceWith(document.createTextNode(before), link, document.createTextNode(after));
+    node.replaceWith(document.createTextNode(before), trigger, document.createTextNode(after));
+  });
 
-    if (!document.getElementById(`intro-${termSlug(entry[0])}`)) {
-      block.insertAdjacentHTML('afterend', termIntroductionHtml(entry));
-    }
+  document.addEventListener('pointerdown', event => {
+    if (activeTrigger && !popover.contains(event.target) && event.target !== activeTrigger) hidePopover();
+  });
+  addEventListener('resize', () => { if (activeTrigger) positionPopover(activeTrigger); });
+  addEventListener('scroll', () => { if (activeTrigger && !popover.matches(':hover')) hidePopover(); }, { passive: true });
+  addEventListener('keydown', event => {
+    if (event.key === 'Escape' && activeTrigger) hidePopover({ restoreFocus: true });
   });
 }
 

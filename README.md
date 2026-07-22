@@ -20,7 +20,7 @@ Abra `index.html` diretamente em um navegador moderno. O projeto não exige inst
 - Tema claro e escuro persistente.
 - Progresso e posição de leitura persistentes.
 - Navegação interna, glossário alfabético e botão de retorno ao topo.
-- Termos profissionais vinculados ao glossário na primeira ocorrência.
+- Termos profissionais sublinhados com explicação completa por hover, foco ou toque.
 - Tradução literal, explicação contextual, exemplo e erro comum para cada entrada do glossário.
 
 ## Exportar como PDF
