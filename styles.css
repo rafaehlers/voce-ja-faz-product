@@ -215,6 +215,18 @@ tbody tr:nth-child(even) { background: color-mix(in srgb, var(--indigo-soft) 25%
   .term-popover { max-height: calc(100vh - 2rem); }
 }
 
+@media (max-width: 480px) {
+  .book-toolbar { gap: .35rem; padding-inline: .75rem; }
+  .toolbar-button { padding: .5rem .55rem; font-size: .73rem; }
+  #themeButton, #printButton, .language-link { font-size: 0; }
+  #themeButton::after, #printButton::after, .language-link::after { font-size: .73rem; }
+  html[lang^="pt"] #themeButton::after { content: "Tema"; }
+  html[lang^="en"] #themeButton::after { content: "Theme"; }
+  #printButton::after { content: "PDF"; }
+  html[lang^="pt"] .language-link::after { content: "EN"; }
+  html[lang^="en"] .language-link::after { content: "PT"; }
+}
+
 @page {
   size: A4;
   margin: 19mm 17mm 21mm;
