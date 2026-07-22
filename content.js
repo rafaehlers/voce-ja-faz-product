@@ -3,6 +3,7 @@
 const openingContent = `
   <header class="chapter-opening"><p class="chapter-kicker">Nota ao leitor</p><h2>Este não é um livro sobre decorar frameworks</h2></header>
   <p class="lead">Frameworks são ferramentas de compressão. Eles ajudam a organizar uma conversa, mas não tomam decisões por você. Este livro começa em outro lugar: nas perguntas que profissionais experientes já fazem quando precisam decidir o que vale a pena construir.</p>
+  <aside class="callout definition"><strong>Como os termos são apresentados.</strong> Na primeira vez em que um conceito profissional em inglês aparece, ele recebe um link pontilhado e uma explicação destacada com tradução literal, significado prático, exemplo e cuidado de uso. O link leva diretamente à entrada completa no glossário. Assim, você pode aprender o vocabulário no contexto da decisão sem precisar interromper a leitura para procurar uma definição externa.</aside>
   <p>Talvez você tenha aprendido software atendendo clientes irritados, negociando escopo com Engineering, tentando salvar uma implantação ou cuidando do caixa de uma empresa. Nessas situações, você provavelmente perguntou se o problema era recorrente, quem era afetado, quanto custaria resolvê-lo e como saberia se a mudança funcionou. Isso já é matéria-prima de Product Management.</p>
   <p>O que costuma faltar não é inteligência de produto. É um sistema explícito para ordenar o raciocínio e um vocabulário compartilhado para comunicá-lo. Em uma entrevista, dizer “eu verificaria se acontece com mais clientes parecidos” pode ser correto. Dizer que você validaria o padrão dentro do <em>Ideal Customer Profile</em>, combinando evidência qualitativa e quantitativa, torna o mesmo raciocínio comparável ao de outros candidatos.</p>
   <aside class="callout takeaway"><strong>Como ler.</strong> Use os capítulos em sequência uma vez. Depois volte a eles como manual: o dicionário quando faltar um termo, os capítulos de métricas antes de um experimento e a parte de entrevistas antes de um processo seletivo.</aside>
@@ -106,7 +107,7 @@ const BOOK_PARTS = [
         <h3>5. Qual o menor investimento capaz de gerar aprendizado?</h3><p>Escolha o teste pela incerteza. Prototype para usabilidade, concierge para valor, proof of concept para feasibility, rollout limitado para risco operacional. <strong>Erro:</strong> chamar uma feature incompleta de MVP. <strong>Entrevista:</strong> “Como reduziria o risco desta aposta?”</p>
         <h3>6. Como mediremos sucesso e risco?</h3><p>Defina uma métrica primária, sinais antecedentes e guardrails. Para onboarding: ativação é primária; conclusão de setup pode ser leading; tickets e tempo até valor, guardrails. <strong>Erro:</strong> escolher apenas o que é fácil instrumentar. <strong>Entrevista:</strong> “Como mediria sucesso?”</p>
         <h3>7. Que decisão os resultados irão provocar?</h3><p>Antes do teste, combine limites para iterate, scale ou rollback. Sem regra, qualquer resultado pode ser racionalizado. <strong>Erro:</strong> observar dados sem compromisso decisório. <strong>Entrevista:</strong> “O que faria se a métrica subisse, mas o suporte piorasse?”</p>
-        <aside class="callout example"><strong>Exemplo integrado.</strong> Uma Shopify app recebe pedidos por edição em massa. A equipe identifica lojistas com mais de 500 SKUs, confirma horas semanais gastas, estima impacto em retenção, testa um fluxo clicável, mede tarefas concluídas e erros, libera a dez lojas e só amplia se tempo cair sem aumento material de alterações incorretas.</aside>
+        <aside class="callout example"><strong>Exemplo integrado.</strong> Um aplicativo de operações para e-commerce recebe pedidos por edição em massa. A equipe identifica lojistas com mais de 500 itens no catálogo, confirma horas semanais gastas, estima impacto em retenção, testa um fluxo clicável, mede tarefas concluídas e erros, libera a dez lojas e só amplia se o tempo cair sem aumento material de alterações incorretas.</aside>
         <aside class="callout takeaway"><strong>Síntese.</strong> As perguntas não são um checklist burocrático. São uma proteção contra a tendência humana de se apaixonar pela primeira explicação disponível.</aside>` },
       { id: 'capitulo-3', number: 3, title: 'O erro de começar pela solução', content: `
         <p class="lead">Feature requests são dados valiosos sobre contexto e expectativa. Não são especificações prontas. O cliente conhece profundamente sua realidade; a equipe de produto precisa descobrir qual problema é generalizável e qual resposta preserva a coerência do produto.</p>
@@ -124,7 +125,7 @@ const BOOK_PARTS = [
         <p>Imagine uma ferramenta de time tracking. Consultores registram horas; gestores cobram consistência; Finance fatura; o COO compra; Security aprova; um team lead atua como champion. Um onboarding que agrada ao COO, mas exige vinte campos por registro, pode melhorar a venda e destruir adoção.</p>
         <h3>Mapa de papéis</h3><p>Para cada decisão, registre: quem sente a dor, quem recebe o valor, quem muda de comportamento, quem pode bloquear, quem paga e quem assume risco. Em produtos PLG, a mesma pessoa pode ocupar vários papéis no começo e separá-los quando a conta cresce. Essa mudança é uma pista importante para product-led sales.</p>
         <aside class="callout error"><strong>Erro comum.</strong> Criar personas decorativas com idade, hobbies e foto fictícia. Uma persona só ajuda se explicar comportamento relevante: frequência da tarefa, autonomia, competência, motivação e restrições.</aside>
-        <aside class="callout example"><strong>Exemplo.</strong> Em uma Shopify app, o merchant pode ser buyer e user; em uma agência, o dono é buyer, o especialista é user e os clientes finais são stakeholders. O mesmo fluxo de aprovação terá valor e fricção distintos.</aside>
+        <aside class="callout example"><strong>Exemplo.</strong> Em um aplicativo para lojas virtuais, o lojista pode ser buyer e user; em uma agência, o dono é buyer, o especialista é user e os clientes finais são stakeholders. O mesmo fluxo de aprovação terá valor e fricção distintos.</aside>
         <aside class="callout takeaway"><strong>Síntese.</strong> Segmentar não é colocar rótulos. É evitar médias enganosas e escolher conscientemente para quem o produto será mais valioso.</aside>` }
     ]
   },
@@ -155,10 +156,10 @@ const BOOK_PARTS = [
         <aside class="callout takeaway"><strong>Síntese.</strong> Leading orienta cedo, lagging confirma tarde e guardrail impede vitória local com dano sistêmico. Os três contam uma história causal que precisa ser revisada à luz dos dados.</aside>` },
       { id: 'capitulo-8', number: 8, title: 'ICP, persona e segmento', content: `
         <p class="lead">ICP responde “que tipo de empresa deveríamos servir melhor?”. Persona responde “que pessoa, em que contexto, precisa agir?”. Segmento responde “que grupo queremos comparar ou tratar de modo diferente?”.</p>
-        <div class="diagram icp-persona" aria-label="ICP versus Persona"><div class="node wide"><small>ICP · empresa</small>Agências digitais remotas, 20–100 pessoas, cobrança por hora, ferramentas SaaS integráveis</div><div class="connector">contém</div><div class="node"><small>Persona · pessoa</small>Operations manager responsável por utilização e margem</div><div class="connector">analisado em</div><div class="node"><small>Segmento</small>Contas ativadas via integração com Jira</div></div>
+        <div class="diagram icp-persona" aria-label="ICP versus Persona"><div class="node wide"><small>ICP · empresa</small>Agências digitais remotas, 20–100 pessoas, cobrança por hora, ferramentas SaaS integráveis</div><div class="connector">contém</div><div class="node"><small>Persona · pessoa</small>Operations manager responsável por utilização e margem</div><div class="connector">analisado em</div><div class="node"><small>Segmento</small>Contas ativadas por integração com a ferramenta de projetos</div></div>
         <p>Um ICP inclui atributos que predizem necessidade, capacidade de obter valor, disposição para pagar, custo de servir e alinhamento estratégico. “SMB” raramente basta. Duas empresas com cinquenta pessoas podem ter workflows e urgência completamente diferentes.</p>
-        <p>Persona deve conter responsabilidades, gatilhos, comportamento, restrições e critérios de sucesso. Para uma ferramenta Toggl-like, “gestor de 35 anos que gosta de produtividade” é inútil. “Delivery manager que fecha rentabilidade toda sexta, depende de apontamentos de 40 consultores e não pode bloquear o trabalho” orienta design.</p>
-        <h3>Quatro contextos</h3><ul><li><strong>Toggl-like:</strong> ICP pode ser agência que vende horas; personas incluem contributor, manager e Finance.</li><li><strong>B2B enterprise:</strong> ICP inclui maturidade de segurança e complexidade do processo; buyer e end user se separam.</li><li><strong>Shopify app:</strong> segmente por volume de pedidos, catálogo e operação própria versus agência.</li><li><strong>Equipe remota:</strong> país é menos explicativo que fuso distribuído, assíncrono e autonomia.</li></ul>
+        <p>Persona deve conter responsabilidades, gatilhos, comportamento, restrições e critérios de sucesso. Para uma ferramenta de gestão de tempo, “gestor de 35 anos que gosta de produtividade” é inútil. “Delivery manager que fecha rentabilidade toda sexta, depende de apontamentos de 40 consultores e não pode bloquear o trabalho” orienta design.</p>
+        <h3>Quatro contextos</h3><ul><li><strong>SaaS de gestão de tempo:</strong> o ICP pode ser uma agência que vende horas; personas incluem contributor, manager e Finance.</li><li><strong>B2B enterprise:</strong> o ICP inclui maturidade de segurança e complexidade do processo; buyer e end user se separam.</li><li><strong>Aplicativo para e-commerce:</strong> segmente por volume de pedidos, tamanho de catálogo e operação própria versus agência.</li><li><strong>Equipe remota:</strong> país é menos explicativo que fuso distribuído, trabalho assíncrono e autonomia.</li></ul>
         <p>Segmentos podem ser firmográficos, comportamentais, de necessidade, valor ou ciclo de vida. Crie-os para uma decisão: comparar retenção, adaptar onboarding ou escolher rollout. Se um segmento não muda análise nem ação, é só etiqueta.</p>
         <aside class="callout error"><strong>Erro comum.</strong> Definir ICP como descrição de quem já compra. A base atual contém acidentes históricos; o ICP é uma escolha sobre onde o fit pode ser superior e sustentável.</aside>
         <aside class="callout takeaway"><strong>Síntese.</strong> ICP orienta estratégia, persona orienta experiência e segmento orienta análise ou ação. Eles se conectam, mas não são intercambiáveis.</aside>` }
@@ -368,11 +369,238 @@ const GLOSSARY = [
 ['Rollout','', 'Processo de liberar uma mudança progressivamente.','Design partners, 10%, 50%, todos.','Confundir publicação com adoção.'],
 ['Post-launch review','', 'Revisão de hipótese, resultado, risco e aprendizado após lançamento.','Decidir scale após coorte madura.','Fazer apenas uma celebração de outputs.'],
 ['Pattern validation','', 'Confirmação de recorrência em casos independentes.','Mesmo job em quatro contas do ICP.','Contar repetições de uma mesma conta.'],
-['Product strategy','', 'Conjunto de escolhas sobre onde jogar e como vencer.','Focar agências que cobram por hora via PLG.','Chamar lista de projetos de estratégia.']
+['Product strategy','', 'Conjunto de escolhas sobre onde jogar e como vencer.','Focar agências que cobram por hora via PLG.','Chamar lista de projetos de estratégia.'],
+['Beachhead','', 'Segmento inicial estreito escolhido para conquistar tração antes de expandir.','Começar por agências que faturam por hora antes de atender todo o mercado de serviços.','Confundir foco inicial com mercado final ou escolher um grupo sem dor intensa.'],
+['B2B','Business to Business', 'Modelo em que uma empresa vende produtos ou serviços para outras empresas.','Uma plataforma de faturamento vendida para escritórios contábeis.','Presumir que todas as empresas compram, usam e decidem da mesma forma.'],
+['Enterprise','', 'Contexto de empresas grandes, com compras complexas, governança e múltiplos stakeholders.','Uma conta exige SSO, auditoria e aprovação de Security.','Usar o termo apenas como sinônimo de cliente que paga mais.'],
+['Fit','', 'Grau de compatibilidade entre problema, público, proposta e capacidades do produto.','Agências que cobram horas apresentam melhor fit com uma ferramenta de rentabilidade.','Tratar fit como impressão subjetiva sem evidências de uso, retenção ou economia.'],
+['Product Management','PM', 'Disciplina de escolher problemas relevantes e coordenar aprendizado, estratégia e entrega para gerar resultados.','Priorizar a redução do time to value em vez de apenas adicionar funcionalidades.','Confundir Product Management com gerenciamento de projetos ou administração de backlog.'],
+['Product Manager','PM', 'Profissional responsável por melhorar a qualidade das decisões de produto junto à equipe.','Conectar uma dor recorrente de clientes ao impacto no negócio e ao menor teste possível.','Tratar o PM como chefe de Engineering ou dono exclusivo das ideias.'],
+['Product thinking','', 'Forma estruturada de raciocinar sobre problema, público, evidência, impacto, risco e decisão.','Questionar se um pedido representa padrão antes de colocá-lo no roadmap.','Reduzir o conceito à aplicação mecânica de frameworks.'],
+['SaaS','Software as a Service', 'Software oferecido continuamente como serviço, normalmente acessado pela internet e cobrado por assinatura ou uso.','Uma ferramenta de gestão financeira usada no navegador e cobrada mensalmente.','Achar que SaaS descreve apenas o modelo de cobrança e ignorar operação contínua e retenção.'],
+['Self-service','', 'Modelo no qual o cliente consegue conhecer, testar, comprar e usar o produto com pouca intervenção humana.','Uma pequena equipe inicia um trial e assina sem falar com Sales.','Confundir ausência de contato humano com ausência de suporte ou complexidade.'],
+['Workflow','', 'Sequência de atividades, decisões e transferências necessária para concluir um trabalho.','Reunir horas, revisar exceções, aprovar e emitir uma fatura.','Usar workflow como sinônimo de uma única tela ou botão.'],
+['Awareness','', 'Condição de uma pessoa conhecer uma capacidade, mensagem ou produto e perceber que ele pode ser relevante.','Usuários elegíveis veem a nova opção de importação no momento em que precisam trazer dados.','Concluir que baixa adoção é sempre falta de divulgação.'],
+['Prospect','', 'Pessoa ou organização que pode se tornar cliente e está em algum estágio de avaliação comercial.','Uma empresa em trial avalia requisitos de segurança antes de assinar.','Tratar toda opinião de prospect como evidência equivalente à de uso real.'],
+['Power user','', 'Usuário avançado, frequente e capaz de explorar recursos além do caminho comum.','Uma analista cria automações e modelos usados por toda a equipe.','Projetar a experiência principal apenas para comportamentos de especialistas.'],
+['Spike','', 'Investigação técnica curta e delimitada para reduzir uma incerteza antes de assumir uma entrega.','Engineering testa se a nova busca responde dentro do limite de latência.','Transformar a investigação em implementação completa sem nova decisão.'],
+['Smoke test','', 'Teste rápido que verifica um sinal essencial antes de investir em validação ou construção mais profunda.','Uma página com proposta e preço mede se o público inicia a compra.','Interpretar interesse inicial como prova de retenção ou disposição real a pagar.'],
+['Pricing','', 'Processo de definir preço, unidade de cobrança, níveis e regras comerciais de uma oferta.','Cobrar por assento, por volume processado ou por uma combinação dos dois.','Escolher preço apenas somando custo e margem desejada.'],
+['Packaging','', 'Forma de agrupar capacidades, limites e serviços em planos ou ofertas compreensíveis.','Relatórios avançados e permissões entram no plano para equipes.','Confundir packaging com preço ou distribuir features sem uma lógica de valor.'],
+['Commitment','', 'Compromisso explícito que a organização decidiu tratar como promessa, obrigação ou acordo.','Uma migração precisa terminar antes da data regulatória comunicada aos clientes.','Chamar toda intenção de roadmap de commitment.'],
+['Progressive disclosure','', 'Princípio de revelar complexidade gradualmente, mostrando primeiro o necessário e oferecendo detalhes quando passam a ser úteis.','Configurações avançadas aparecem somente depois que o usuário ativa o modo personalizado.','Esconder funções essenciais ou dificultar sua descoberta em nome de uma interface limpa.'],
+['Premortem','', 'Exercício que imagina antecipadamente que uma decisão fracassou e investiga causas plausíveis.','A equipe supõe que o lançamento gerou confusão e lista sinais, dependências e prevenções.','Usar o exercício para produzir medo genérico sem ações ou monitoramento.'],
+['Core product','', 'Núcleo de capacidades e experiências que sustentam a principal proposta de valor do produto.','O fluxo de registrar, revisar e faturar trabalho pertence ao core de uma ferramenta de rentabilidade.','Chamar tudo que já existe de core para impedir mudanças ou remoções.'],
+['Decision owner','', 'Pessoa com responsabilidade explícita por conduzir e encerrar uma decisão após ouvir as partes relevantes.','A PM reúne evidências e assume a recomendação final de priorização.','Confundir responsabilidade decisória com autoridade para ignorar especialistas.'],
+['Paywall','', 'Barreira que condiciona o acesso a uma capacidade à compra, assinatura ou mudança de plano.','Exportações avançadas exigem o plano pago após o trial.','Adicionar um paywall antes de entender quem percebe valor e em qual momento.'],
+['Add-on','', 'Complemento opcional comprado separadamente da oferta principal.','Auditoria avançada é vendida como módulo adicional para contas reguladas.','Separar uma capacidade essencial e prejudicar a coerência da proposta principal.'],
+['Pipeline','', 'Conjunto de oportunidades comerciais acompanhadas ao longo das etapas de venda.','Sales acompanha empresas em descoberta, avaliação técnica e negociação.','Somar todo o pipeline como se fosse receita contratada.'],
+['Framework','', 'Estrutura reutilizável de perguntas, critérios ou etapas que ajuda a organizar um raciocínio.','As sete perguntas deste livro funcionam como framework para decisões de produto.','Aplicar a estrutura mecanicamente ou tratá-la como resposta pronta.'],
+['Product','', 'Área e perspectiva responsável por conectar problemas de clientes, estratégia de negócio e evolução do produto.','Product organiza a decisão enquanto Design e Engineering aprofundam solução e execução.','Usar Product como sinônimo da pessoa Product Manager.'],
+['Engineering','', 'Disciplina e equipe de engenharia responsável por viabilidade técnica, construção e operação do sistema.','Engineering investiga latência antes de a equipe prometer processamento em tempo real.','Envolver engenharia apenas depois que solução e prazo já foram decididos.'],
+['Design','', 'Disciplina que investiga e projeta como pessoas compreendem, usam e experimentam uma solução.','Design testa um fluxo com usuários antes da implementação completa.','Reduzi-la à aparência visual ou chamar Design apenas para finalizar telas.'],
+['Sales','', 'Função de vendas que encontra, qualifica, negocia e fecha oportunidades comerciais.','Sales registra a objeção que bloqueou uma compra e seu contexto.','Tratar pedidos comerciais como ruído ou, no extremo oposto, como roadmap automático.'],
+['Support','', 'Função de suporte que ajuda usuários a resolver dúvidas, falhas e bloqueios no uso do produto.','Support identifica aumento de erros após um lançamento.','Usar volume bruto de tickets sem considerar crescimento, severidade e tema.'],
+['Security','', 'Função e conjunto de práticas que protegem sistemas, dados e acessos.','Security avalia autenticação, permissões e auditoria antes de aprovar um fornecedor.','Tratar segurança como requisito tardio ou apenas burocrático.'],
+['End user','', 'Pessoa que efetivamente opera o produto para realizar uma tarefa, mesmo quando não compra nem administra a conta.','Analistas usam diariamente uma ferramenta contratada pelo diretor financeiro.','Confundir quem usa com quem escolhe ou paga.'],
+['Detractor','', 'Pessoa que resiste ativamente à adoção por incentivo, risco percebido ou experiência negativa.','Um gestor bloqueia o lançamento porque a mudança reduz seu controle sobre aprovações.','Rotular qualquer discordância como resistência irracional.'],
+['Segment','', 'Grupo de pessoas ou contas delimitado por atributos úteis para uma análise ou ação.','Comparar retenção entre agências pequenas e consultorias maiores.','Criar grupos descritivos que não mudam nenhuma decisão.'],
+['Founder','', 'Pessoa fundadora que iniciou a empresa e costuma acumular decisões de produto, negócio e operação.','O founder atende os primeiros clientes e percebe um padrão de problema.','Tratar sua intuição como evidência suficiente ou ignorá-la por não vir de pesquisa formal.'],
+['Admin','', 'Administrador com permissões para configurar conta, acesso, políticas ou integrações.','O admin define regras de convite para toda a equipe.','Presumir que administradores representam a experiência dos usuários finais.'],
+['Project Manager','', 'Profissional que organiza execução, dependências, prazo, escopo e comunicação de um projeto definido.','A Project Manager coordena uma migração com várias equipes e marcos.','Confundir gestão de projeto com a decisão de quais problemas o produto deve resolver.'],
+['Delivery Manager','', 'Profissional que melhora o fluxo de entrega, coordenação e remoção de impedimentos entre equipes.','O Delivery Manager torna dependências e capacidade visíveis durante um lançamento.','Medir sucesso apenas por velocidade ou quantidade entregue.'],
+['Feature request','', 'Pedido que descreve uma capacidade desejada, normalmente na forma de solução.','Um cliente pede exportação diária por e-mail.','Tratá-lo como especificação pronta sem investigar o problema subjacente.']
 ];
 
+const TERM_TRANSLATIONS = {
+  'A/B test': 'teste A/B ou teste de comparação entre duas versões',
+  'Activation': 'ativação',
+  'Adoption': 'adoção',
+  'Annual Recurring Revenue': 'receita recorrente anual',
+  'Assumption': 'suposição ou premissa',
+  'Backlog': 'acúmulo ou atraso; na profissão, lista de trabalho pendente',
+  'Baseline': 'linha de base ou valor de referência',
+  'Beta': 'versão beta ou versão de teste controlado',
+  'Buyer': 'comprador',
+  'Business impact': 'impacto no negócio',
+  'Buyer persona': 'persona do comprador',
+  'CAC': 'custo de aquisição de cliente',
+  'Champion': 'defensor interno',
+  'Churn': 'perda ou abandono de clientes',
+  'Cohort': 'coorte ou grupo acompanhado em conjunto',
+  'Concierge test': 'teste de concierge ou atendimento manual assistido',
+  'Confidence': 'confiança',
+  'Conversion': 'conversão',
+  'Cost of delay': 'custo do atraso',
+  'Customer': 'cliente',
+  'Customer advisory board': 'conselho consultivo de clientes',
+  'Customer journey': 'jornada do cliente',
+  'Customer lifetime value': 'valor do cliente ao longo da vida',
+  'Customer Success': 'sucesso do cliente',
+  'Decision rule': 'regra de decisão',
+  'Delivery': 'entrega',
+  'Dependency': 'dependência',
+  'Design partner': 'parceiro de desenvolvimento ou de concepção',
+  'Discovery': 'descoberta',
+  'Economic buyer': 'comprador econômico ou responsável pelo orçamento',
+  'Engagement': 'engajamento',
+  'Epic': 'épico ou grande agrupamento de trabalho',
+  'Experiment': 'experimento',
+  'Expansion revenue': 'receita de expansão',
+  'Exposure': 'exposição',
+  'Fake door': 'porta falsa ou entrada para algo ainda não disponível',
+  'Feature': 'funcionalidade ou recurso',
+  'Feature flag': 'bandeira de funcionalidade; na prática, chave de ativação de uma funcionalidade',
+  'Feasibility risk': 'risco de viabilidade técnica',
+  'Freemium': 'gratuito com recursos premium pagos',
+  'Funnel': 'funil',
+  'Go-to-market': 'ida ao mercado ou estratégia de entrada no mercado',
+  'Guardrail metric': 'métrica de guarda-corpo; na prática, métrica de proteção ou de limite',
+  'Hypothesis': 'hipótese',
+  'Ideal Customer Profile': 'perfil de cliente ideal',
+  'Initiative': 'iniciativa',
+  'Instrumentation': 'instrumentação ou implementação da medição',
+  'Jobs to be Done': 'trabalhos a serem realizados',
+  'Kill criteria': 'critérios de encerramento',
+  'Lagging indicator': 'indicador tardio ou de resultado posterior',
+  'Leading indicator': 'indicador antecedente ou antecipado',
+  'Limited rollout': 'lançamento limitado ou liberação controlada',
+  'Minimum detectable effect': 'menor efeito detectável',
+  'Monthly Recurring Revenue': 'receita recorrente mensal',
+  'Minimum viable product': 'produto mínimo viável',
+  'Net Promoter Score': 'índice líquido de promotores',
+  'Net Revenue Retention': 'retenção líquida de receita',
+  'North Star Metric': 'métrica da Estrela do Norte; na prática, métrica estrela-guia ou norteadora',
+  'Opportunity': 'oportunidade',
+  'Opportunity cost': 'custo de oportunidade',
+  'Outcome': 'resultado ou mudança produzida',
+  'Output': 'saída, produção ou artefato entregue',
+  'Payback period': 'período de retorno do investimento',
+  'Persona': 'persona ou perfil comportamental',
+  'Pilot': 'projeto piloto',
+  'PLG': 'crescimento liderado pelo produto',
+  'Product debt': 'dívida de produto',
+  'Product-led sales': 'vendas lideradas pelo produto',
+  'Product-market fit': 'adequação entre produto e mercado',
+  'Product risk': 'risco de produto',
+  'Proof of concept': 'prova de conceito',
+  'Prototype': 'protótipo',
+  'Qualitative evidence': 'evidência qualitativa',
+  'Quantitative evidence': 'evidência quantitativa',
+  'Reach': 'alcance',
+  'Retention': 'retenção',
+  'Revenue at risk': 'receita em risco',
+  'Reversibility': 'reversibilidade',
+  'Roadmap': 'mapa de estrada; na profissão, roteiro ou direção do produto',
+  'Rollback': 'reversão',
+  'Sales-led': 'liderado por vendas',
+  'Scope': 'escopo',
+  'Segmentation': 'segmentação',
+  'Serviceable Available Market': 'mercado disponível que pode ser atendido',
+  'Serviceable Obtainable Market': 'mercado atendível que pode ser conquistado',
+  'Stakeholder': 'parte interessada',
+  'Strategic alignment': 'alinhamento estratégico',
+  'Sunk cost': 'custo afundado; na prática, custo já incorrido e irrecuperável',
+  'Target segment': 'segmento-alvo',
+  'Time to value': 'tempo até perceber valor',
+  'Total addressable market': 'mercado total endereçável',
+  'Trade-off': 'compensação, concessão ou escolha entre perdas e ganhos',
+  'Trial': 'período de teste',
+  'Usability risk': 'risco de usabilidade',
+  'User': 'usuário',
+  'User interview': 'entrevista com usuário',
+  'User story': 'história de usuário',
+  'Value proposition': 'proposta de valor',
+  'Value risk': 'risco de valor',
+  'Viability risk': 'risco de viabilidade para o negócio',
+  'Voice of Customer': 'voz do cliente',
+  'Wizard of Oz': 'Mágico de Oz, uma automação apenas aparente',
+  'Win/loss analysis': 'análise de ganhos e perdas comerciais',
+  'Workaround': 'solução alternativa ou contorno',
+  'Rollback criteria': 'critérios de reversão',
+  'Product analytics': 'análise de dados de produto',
+  'Roadmap commitment': 'compromisso de roadmap',
+  'Scope reduction': 'redução de escopo',
+  'Search logs': 'registros de busca',
+  'Support volume': 'volume de suporte',
+  'Rollout': 'desenrolamento; na profissão, liberação ou implantação progressiva',
+  'Post-launch review': 'revisão pós-lançamento',
+  'Pattern validation': 'validação de padrão',
+  'Product strategy': 'estratégia de produto',
+  'Beachhead': 'cabeça de praia ou ponto inicial de conquista',
+  'B2B': 'de empresa para empresa',
+  'Enterprise': 'empresa de grande porte ou contexto corporativo complexo',
+  'Fit': 'encaixe ou adequação',
+  'Product Management': 'gestão de produto',
+  'Product Manager': 'gerente de produto',
+  'Product thinking': 'pensamento de produto',
+  'SaaS': 'software como serviço',
+  'Self-service': 'autosserviço',
+  'Workflow': 'fluxo de trabalho',
+  'Awareness': 'consciência ou conhecimento; em produto, percepção de que algo existe e é relevante',
+  'Prospect': 'cliente potencial',
+  'Power user': 'usuário poderoso; na profissão, usuário avançado',
+  'Spike': 'pico; em desenvolvimento, investigação técnica curta',
+  'Smoke test': 'teste de fumaça; na prática, verificação rápida de um sinal essencial',
+  'Pricing': 'precificação ou definição de preços',
+  'Packaging': 'empacotamento; na profissão, organização da oferta em planos e capacidades',
+  'Commitment': 'compromisso',
+  'Progressive disclosure': 'revelação progressiva',
+  'Premortem': 'pré-morte; análise antecipada de um fracasso hipotético',
+  'Core product': 'produto central ou núcleo do produto',
+  'Decision owner': 'responsável pela decisão',
+  'Paywall': 'muro de pagamento ou barreira de acesso pago',
+  'Add-on': 'complemento adicional',
+  'Pipeline': 'tubulação; em vendas, conjunto de oportunidades comerciais em andamento',
+  'Framework': 'armação ou estrutura; na profissão, modelo para organizar raciocínio',
+  'Product': 'produto; como área, equipe ou disciplina de produto',
+  'Engineering': 'engenharia',
+  'Design': 'projeto ou desenho; na profissão, disciplina de concepção da experiência',
+  'Sales': 'vendas',
+  'Support': 'suporte',
+  'Security': 'segurança',
+  'End user': 'usuário final',
+  'Detractor': 'detrator ou opositor',
+  'Segment': 'segmento',
+  'Founder': 'fundador ou fundadora',
+  'Admin': 'administrador ou administradora',
+  'Project Manager': 'gerente de projeto',
+  'Delivery Manager': 'gerente de entrega',
+  'Feature request': 'pedido de funcionalidade'
+};
+
+const TERM_DEEP_EXPLANATIONS = {
+  'Ideal Customer Profile': 'Ideal Customer Profile, abreviado como ICP, é a descrição do tipo de empresa que reúne as melhores condições para obter valor do produto e gerar uma relação saudável para o negócio fornecedor. Não é a descrição de qualquer cliente que já paga, nem uma persona individual. Um ICP combina características da organização, como modelo de operação, tamanho, maturidade, urgência do problema, capacidade de implementação, disposição para pagar e custo de atendimento. Por exemplo, uma ferramenta de rentabilidade pode descobrir que seu ICP são agências de 20 a 100 pessoas que cobram por hora e fecham margem semanalmente. A definição importa porque ajuda Product, Sales e Marketing a distinguir demanda estratégica de pedidos vindos de contas que dificilmente terão bom uso, retenção ou expansão.',
+  'Beachhead': 'Beachhead é uma metáfora militar cuja tradução literal é “cabeça de praia”: o pequeno ponto de entrada conquistado primeiro para permitir uma expansão posterior. Em estratégia de produto, significa escolher deliberadamente um segmento inicial estreito, com dor intensa e condições favoráveis de adoção, antes de tentar atender um mercado amplo. Uma empresa pode começar por agências que faturam por hora, aprender profundamente o workflow desse público e criar uma posição forte; depois, usando as capacidades e a reputação construídas, pode expandir para consultorias ou escritórios profissionais. Beachhead não é o mercado final e não é simplesmente o menor segmento. É um ponto de entrada escolhido porque concentra necessidade, acesso, aprendizado e possibilidade de expansão.',
+  'Product Management': 'Product Management é a disciplina de decidir quais problemas merecem investimento, para quem eles devem ser resolvidos e como uma equipe aprenderá se produziu valor. A tradução “gestão de produto” pode sugerir administração de uma coisa pronta, mas o trabalho real envolve escolhas sob incerteza: compreender clientes, conectar oportunidades à estratégia, ordenar investimentos, explicitar riscos, acompanhar entrega e interpretar resultados. Em uma empresa de software, Product Management pode decidir priorizar a redução do tempo até o primeiro valor em vez de adicionar mais uma funcionalidade pedida por poucas contas. A disciplina não substitui Design, Engineering, Sales ou liderança; ela cria contexto e critérios para que essas especialidades tomem decisões coerentes em conjunto.',
+  'Product Manager': 'Product Manager, literalmente gerente de produto, é a pessoa que conduz e melhora o processo de decisão sobre o produto. O título não significa chefe de desenvolvedores, autor exclusivo do roadmap nem representante automático de toda opinião de cliente. Um PM experiente torna explícitos o problema, o público, a evidência, o impacto, os riscos, as alternativas e o trade-off; depois ajuda a equipe a escolher e medir. Por exemplo, diante de baixa adoção, o PM não pede imediatamente uma campanha: primeiro separa usuários elegíveis, expostos e ativados para descobrir se a barreira é awareness, usabilidade ou valor. Sua responsabilidade central é a qualidade do julgamento e do aprendizado, mesmo quando a execução é compartilhada.',
+  'Product thinking': 'Product thinking, ou pensamento de produto, é uma forma de raciocinar que começa pelo problema e termina em uma decisão informada por resultados. Ele combina entendimento do usuário, contexto de negócio, evidências, restrições técnicas, risco e custo de oportunidade. Uma pessoa demonstra product thinking quando recebe um pedido de feature e pergunta quem sofre o problema, com que frequência, qual consequência existe e qual é o menor teste capaz de reduzir a principal incerteza. Não depende de cargo nem de decorar frameworks. Desenvolvedores, profissionais de suporte, founders e operadores podem praticá-lo; o que muda em ambientes formais é a necessidade de organizar e comunicar esse raciocínio de maneira comparável.',
+  'Opportunity cost': 'Opportunity cost significa custo de oportunidade: o valor da melhor alternativa que deixa de ser realizada quando uma escolha é feita. Em produto, capacidade é limitada, portanto uma feature nunca custa apenas as horas necessárias para construí-la; ela também custa o aprendizado, a receita, a redução de risco ou a melhoria de experiência que poderiam ter sido produzidos por outra iniciativa. Se a equipe usa duas semanas para criar um relatório exclusivo, talvez adie uma correção de onboarding que afeta milhares de usuários. O custo de oportunidade não aparece na fatura e por isso costuma ser esquecido. Torná-lo explícito transforma priorização de uma disputa entre ideias em uma comparação entre consequências.',
+  'Guardrail metric': 'Guardrail metric, literalmente métrica de proteção, é uma medida escolhida para impedir que a melhora de um indicador produza um dano inaceitável em outra parte do sistema. Se uma mudança aumenta conversion, mas também aumenta cancelamentos, reclamações ou erros, a equipe não deveria declarar vitória olhando apenas a métrica principal. Por exemplo, em um onboarding mais curto, activation pode ser a métrica primária enquanto tickets de suporte e configurações incorretas funcionam como guardrails. Um guardrail precisa ter público, definição, limite e resposta combinados antes do teste. Sem um limite capaz de pausar, iterar ou reverter a mudança, ele é apenas mais um gráfico no dashboard.',
+  'Workflow': 'Workflow significa literalmente fluxo de trabalho: a sequência completa de ações, decisões, informações e transferências necessárias para alcançar um resultado. O workflow existe além das telas do produto. Para emitir uma fatura, por exemplo, uma equipe pode reunir registros, corrigir exceções, obter aprovação, gerar o documento e enviá-lo ao cliente. Entender esse fluxo revela participantes, dependências, espera, risco e workarounds que uma análise isolada da interface não mostraria. Quando um cliente pede um botão, investigar o workflow ajuda a descobrir se o problema está naquela ação específica ou em uma etapa anterior, em uma regra de aprovação ou na falta de informação.',
+  'SaaS': 'SaaS é a sigla de Software as a Service, literalmente software como serviço. O produto é oferecido continuamente, geralmente pela internet, e a empresa fornecedora permanece responsável por disponibilidade, manutenção, segurança, atualizações e suporte. A cobrança costuma ser recorrente ou baseada em uso, mas assinatura sozinha não define SaaS. Como o cliente pode renovar, expandir, reduzir ou cancelar, métricas como activation, retention, churn, MRR e NRR tornam-se importantes. Uma ferramenta financeira acessada no navegador e cobrada mensalmente é um exemplo; seu sucesso depende não apenas da venda inicial, mas de valor recorrente e operação confiável.',
+  'B2B': 'B2B é a abreviação de Business to Business, literalmente “de empresa para empresa”. Indica que o cliente comercial é uma organização, embora pessoas continuem usando, comprando, aprovando e sendo afetadas pelo produto. Em B2B, user, buyer, economic buyer, champion e stakeholder podem ser pessoas diferentes, o que torna discovery, adoção e monetização mais complexos. Um software vendido a escritórios contábeis é B2B: analistas podem usar diariamente, um gerente pode defender a compra, Security pode bloquear e um diretor pode aprovar o orçamento. O termo não significa automaticamente enterprise; pequenos negócios e processos self-service também podem ser B2B.'
+};
+
+function termSlug(term) {
+  return term.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function termDisplay(entry) {
+  return entry[1] ? `${entry[0]} · ${entry[1]}` : entry[0];
+}
+
+function termDetailedExplanation(entry) {
+  return TERM_DEEP_EXPLANATIONS[entry[0]] || `${entry[2]} O termo é útil quando essa ideia precisa ser separada de conceitos parecidos, transformada em critério ou comunicada sem ambiguidade entre Product, Design, Engineering e áreas comerciais. Em vez de funcionar como etiqueta sofisticada, ele deve indicar qual pergunta está sendo respondida, qual evidência seria relevante e que decisão pode mudar. Para aplicá-lo corretamente, declare o objeto analisado, o contexto, o público e a consequência esperada; depois registre a interpretação de modo que outra pessoa consiga questioná-la e revisá-la à luz dos resultados. Assim, o conceito organiza julgamento e comparação entre alternativas sem fingir uma precisão que os dados ainda não oferecem.`;
+}
+
+function termIntroductionHtml(entry) {
+  const slug = termSlug(entry[0]);
+  return `<aside id="intro-${slug}" class="term-introduction" aria-labelledby="intro-title-${slug}"><p class="term-kicker">Termo apresentado</p><h3 id="intro-title-${slug}">${termDisplay(entry)}</h3><p class="term-literal"><strong>Tradução literal:</strong> ${TERM_TRANSLATIONS[entry[0]]}.</p><p>${termDetailedExplanation(entry)}</p><p class="term-example"><strong>Exemplo concreto:</strong> ${entry[3]}</p><p class="term-caution"><strong>Cuidado ao usar:</strong> ${entry[4]}</p><a href="#term-${slug}">Ver a entrada completa no glossário →</a></aside>`;
+}
+
 function glossaryHtml() {
-  return `<nav class="alphabet" aria-label="Navegação alfabética">${[...new Set(GLOSSARY.map(x => x[0][0]))].map(letter => `<a href="#gloss-${letter}">${letter}</a>`).join('')}</nav><div class="glossary-list">${GLOSSARY.sort((a,b) => a[0].localeCompare(b[0], 'pt-BR')).map((x, i, arr) => { const letter = x[0][0].toUpperCase(); const newLetter = i === 0 || arr[i-1][0][0].toUpperCase() !== letter; return `${newLetter ? `<h3 id="gloss-${letter}" class="gloss-letter">${letter}</h3>` : ''}<article id="term-${x[0].toLowerCase().replace(/[^a-z0-9]+/g,'-')}" class="glossary-entry"><h4>${x[0]}${x[1] ? ` <span>${x[1]}</span>` : ''}</h4><p>${x[2]}</p><p><strong>Exemplo:</strong> ${x[3]}</p><p><strong>Erro comum:</strong> ${x[4]}</p></article>`; }).join('')}</div>`;
+  return `<nav class="alphabet" aria-label="Navegação alfabética">${[...new Set(GLOSSARY.map(x => x[0][0]))].map(letter => `<a href="#gloss-${letter}">${letter}</a>`).join('')}</nav><div class="glossary-list">${GLOSSARY.sort((a,b) => a[0].localeCompare(b[0], 'pt-BR')).map((x, i, arr) => { const letter = x[0][0].toUpperCase(); const newLetter = i === 0 || arr[i-1][0][0].toUpperCase() !== letter; return `${newLetter ? `<h3 id="gloss-${letter}" class="gloss-letter">${letter}</h3>` : ''}<article id="term-${termSlug(x[0])}" class="glossary-entry"><h4>${x[0]}${x[1] ? ` <span>${x[1]}</span>` : ''}</h4><p class="literal-translation"><strong>Tradução literal:</strong> ${TERM_TRANSLATIONS[x[0]]}.</p><p>${termDetailedExplanation(x)}</p><p><strong>Exemplo de uso:</strong> ${x[3]}</p><p><strong>Erro comum:</strong> ${x[4]}</p></article>`; }).join('')}</div>`;
 }
 
 BOOK_PARTS.push({
@@ -391,7 +619,7 @@ BOOK_PARTS.push({
       <form class="decision-checklist"><fieldset><legend>Problema e público</legend><label><input type="checkbox"> Consigo descrever o problema sem mencionar a feature?</label><label><input type="checkbox"> Tenho um episódio, comportamento ou consequência observável?</label><label><input type="checkbox"> Separei user, buyer, customer e stakeholder?</label><label><input type="checkbox"> Defini segmento e relação com o ICP?</label></fieldset><fieldset><legend>Evidência e valor</legend><label><input type="checkbox"> Separei fato, interpretação, hipótese e suposição?</label><label><input type="checkbox"> Combinei sinais qualitativos e quantitativos pertinentes?</label><label><input type="checkbox"> Dimensionei impacto para usuário e negócio?</label><label><input type="checkbox"> Declarei confidence e o que poderia reduzi-la?</label></fieldset><fieldset><legend>Escolha</legend><label><input type="checkbox"> Comparei alternativas, inclusive não construir?</label><label><input type="checkbox"> Tornei opportunity cost e cost of delay visíveis?</label><label><input type="checkbox"> Considerei esforço total, dependências e reversibilidade?</label><label><input type="checkbox"> Nomeei o trade-off aceito e quem decide?</label></fieldset><fieldset><legend>Aprendizado e entrega</legend><label><input type="checkbox"> Identifiquei o risco que mais pode matar a aposta?</label><label><input type="checkbox"> Escolhi o menor teste capaz de reduzir esse risco?</label><label><input type="checkbox"> Defini success, leading, lagging e guardrails?</label><label><input type="checkbox"> Planejei instrumentation, rollout e rollback?</label><label><input type="checkbox"> Combinei critérios para iterate, scale ou kill?</label><label><input type="checkbox"> Defini owner e data da post-launch review?</label></fieldset></form>
       <aside class="callout takeaway"><strong>Versão de bolso.</strong> Problema, público, evidência, impacto, alternativa, custo, risco, teste, métrica, decisão. Se você consegue explicar esses dez itens em dois minutos, a conversa está pronta para aprofundar.</aside>` },
     { id: 'capitulo-28', number: 28, title: 'Glossário essencial', content: `
-      <p class="lead">Este glossário é uma ferramenta de tradução, não uma prova de fluência. Cada termo inclui uma aplicação e o erro que mais frequentemente destrói sua utilidade.</p>
+      <p class="lead">Este glossário é uma ferramenta de tradução, não uma prova de fluência. Cada entrada apresenta o termo original, sua tradução literal ou equivalente direto em português, uma explicação detalhada, exemplo de uso e o erro que mais frequentemente destrói sua utilidade.</p>
       ${glossaryHtml()}
       <aside class="callout takeaway"><strong>Síntese.</strong> Volte ao glossário quando um conceito aparecer numa conversa. Depois formule um exemplo do seu próprio trabalho; vocabulário se fixa quando encontra experiência.</aside>` }
   ]
@@ -415,7 +643,7 @@ const CHAPTER_NOTEBOOKS = {
   'capitulo-5': `<section class="field-notes"><h3>Da palavra à frase decisória</h3><p>Memorizar definições oferece reconhecimento, não domínio. Domínio aparece quando o termo muda uma decisão. Faça três movimentos: traduza o termo para linguagem comum, conecte-o a uma experiência e use-o numa recomendação. Opportunity cost: “o valor do que deixamos de fazer”; experiência: “adiamos correção de onboarding para criar exportação”; recomendação: “não aceito esse opportunity cost porque activation é o objetivo e a exportação tem baixa confidence”.</p><p>Alguns termos se confundem porque pertencem a níveis distintos. Initiative é uma aposta; epic é um agrupamento de delivery. Outcome é uma mudança; output é o artefato. Hypothesis é afirmação testável; assumption é crença de suporte. MVP entrega valor real; prototype representa uma experiência; proof of concept testa tecnologia. Distinguir níveis impede que ferramentas de execução substituam raciocínio de produto.</p><h4>Um vocabulário para cada conversa</h4><p>Com clientes, prefira problemas e consequências. Com Engineering, explicite riscos, dependências e reversibilidade. Com liderança, conecte outcome, estratégia e economia. Em entrevista, use os termos suficientes para mostrar fluência, mas traduza causalidade. A linguagem muda; a estrutura permanece.</p><p>Termos financeiros merecem precisão especial. ARR, MRR, NRR, CAC e LTV dependem de convenções da empresa. Antes de comparar, pergunte como são calculados. Um PM não precisa substituir Finance, mas precisa evitar decisões baseadas em números semanticamente incompatíveis.</p><aside class="callout exercise"><strong>Treino.</strong> Escolha dez linhas da tabela. Para cada uma, grave uma frase de vinte segundos contendo contexto, termo e decisão. Se a frase funciona melhor sem o termo, não o force.</aside><p>Jargão também pode ocultar conflito. “Strategic alignment” deve levar à pergunta “qual escolha estratégica, especificamente?”. “Data-driven” deve levar a “qual dado e qual decisão?”. Bons profissionais usam vocabulário para abrir o raciocínio.</p></section>`,
   'capitulo-6': `<section class="field-notes"><h3>Definição operacional antes do gráfico</h3><p>Toda métrica precisa de evento, população, janela e regra. “Retention melhorou” é incompleto. “A proporção de contas de agência ativadas em janeiro que concluiu ao menos um fechamento semanal entre as semanas cinco e oito subiu em relação às três coortes anteriores” pode ser auditada. A definição é longa na análise para que a conclusão possa ser curta.</p><p>Escolher o evento é uma decisão de produto. Login é fácil de medir, mas pode representar trabalho obrigatório e não valor. Um gestor que entra para corrigir erro está ativo e insatisfeito. Procure comportamento ligado ao job: relatório usado, projeto fechado, campanha publicada, pedido processado. Valide a relação com outcome sem transformá-la em causalidade automática.</p><h4>Receita pode mascarar produto</h4><p>Contratos anuais atrasam a observação de churn. Aumento de preço eleva ARR mesmo com menos valor percebido. Sales pode compensar baixa retenção com aquisição cara. Por isso, conecte métricas financeiras a coortes de comportamento: quem ativou, retém e expande? Que canal traz contas que consomem suporte e saem?</p><p>NPS e satisfaction são úteis como sinais, sobretudo quando segmentados e acompanhados por motivos. Uma nota agregada não explica o que mudar. Compare percepção com comportamento: promotores que não renovam, detratores que expandem e usuários satisfeitos de uma feature periférica contam histórias diferentes.</p><aside class="callout framework"><strong>Contrato da métrica.</strong> Nome, pergunta respondida, definição, fonte, owner, frequência, segmentos, limitações e ação esperada.</aside><p>Quando uma métrica vira meta, as pessoas aprendem a movê-la. Guardrails e revisão qualitativa reduzem otimização artificial. A pergunta sênior não é só “subiu?”, mas “que comportamento produziu a subida e ele representa o valor que pretendíamos?”.</p></section>`,
   'capitulo-7': `<section class="field-notes"><h3>Construindo a cadeia causal</h3><p>Comece do fim. Se o outcome é retenção de equipes, pergunte por que uma equipe permaneceria: talvez porque dados de todos os membros permitem fechar faturamento. Para isso, membros precisam registrar com consistência. Para isso, precisam ser convidados, configurar projeto e entender a primeira entrada. Cada elo sugere um leading indicator. Escolha aquele suficientemente próximo da mudança e suficientemente ligado ao outcome.</p><p>A cadeia é uma hipótese, não uma lei. Depois do lançamento, compare coortes e teste se o comportamento antecede retenção de forma estável. Usuários mais motivados podem realizar todas as etapas e reter por outras razões. Experimentos, variação natural e entrevistas ajudam a distinguir mecanismo de correlação.</p><h4>Guardrails pertencem a alguém</h4><p>Liste quem pode pagar pelo ganho. Um fluxo que aumenta convite pode gerar spam para convidados; um paywall aumenta conversion entre leads quentes, mas reduz activation total; automação reduz tempo de gestor e aumenta erros para Finance. Para cada grupo, escolha dano, limite, owner e resposta. Sem limite, guardrail é apenas dashboard.</p><p>Também existem guardrails operacionais: latência, incidentes, custo de infraestrutura e carga de Support. Eles não são inferiores às métricas do usuário. Se o produto não pode ser operado, o outcome não é sustentável.</p><aside class="callout example"><strong>Cenário.</strong> Objetivo: aumentar expansion em contas PLG. Leading: contas atingem dez usuários ativos. Lagging: upgrade em 60 dias. Guardrails: remoções após convite, reclamações de billing e retenção dos contributors. Se convites sobem e usuários não ativam, o elo está quebrado.</aside><p>Em uma entrevista, desenhe a causalidade em voz alta: “Acredito que X antecipa Y porque...; confirmaria com Z; protegeria W”. Isso demonstra mais maturidade que listar cinco métricas populares.</p></section>`,
-  'capitulo-8': `<section class="field-notes"><h3>ICP é uma hipótese estratégica</h3><p>Um ICP não nasce de brainstorming. Ele combina evidência de necessidade, retenção, economia, aquisição e capacidade de servir. Comece com contas que obtêm valor consistente; examine o job, o ambiente e o caminho de compra. Depois pergunte se a empresa quer e consegue construir vantagem ali. O resultado é uma hipótese que deve ser revisada, não uma placa permanente.</p><p>Fit pode mudar com maturidade. Uma Shopify app inicialmente serve lojas operadas pelo founder. Ao crescer, descobre agências que gerenciam dezenas de lojas e valorizam workflows em massa. O novo segmento pode reter e expandir melhor, mas exigir permissões e suporte mais complexos. Escolher esse ICP é uma decisão sobre produto e modelo operacional, não apenas mercado.</p><h4>Matriz prática</h4><p>Avalie cada possível ICP em cinco dimensões: intensidade do problema, frequência do job, capacidade de obter valor, disposição a pagar e custo de servir. Acrescente acesso de go-to-market e alinhamento com capacidades distintas. Use evidência por coorte e entrevistas, não notas inventadas para produzir ranking.</p><p>Personas dentro do ICP podem conflitar. Em software remoto, managers querem visibilidade; contributors querem autonomia; Finance quer precisão. A estratégia não precisa satisfazer todos igualmente, mas o design precisa administrar o conflito. Defina o comportamento principal e guardrails por papel.</p><aside class="callout error"><strong>Diagnóstico enganoso.</strong> “Enterprise não usa” pode significar que admins nunca concluíram configuração; “SMB ama” pode significar poucos power users vocais. Sempre conecte segmento, exposição, activation e retention.</aside><p>Para uma decisão específica, escreva: “Nosso ICP é X porque Y; a persona focal é Z no contexto W; analisaremos separadamente o segmento Q”. Essa frase elimina três ambiguidades de uma vez.</p></section>`,
+  'capitulo-8': `<section class="field-notes"><h3>ICP é uma hipótese estratégica</h3><p>Um ICP não nasce de brainstorming. Ele combina evidência de necessidade, retenção, economia, aquisição e capacidade de servir. Comece com contas que obtêm valor consistente; examine o job, o ambiente e o caminho de compra. Depois pergunte se a empresa quer e consegue construir vantagem ali. O resultado é uma hipótese que deve ser revisada, não uma placa permanente.</p><p>Fit pode mudar com maturidade. Um aplicativo para e-commerce inicialmente serve lojas operadas pelo próprio fundador. Ao crescer, descobre agências que gerenciam dezenas de lojas e valorizam workflows em massa. O novo segmento pode reter e expandir melhor, mas exigir permissões e suporte mais complexos. Escolher esse ICP é uma decisão sobre produto e modelo operacional, não apenas mercado.</p><h4>Matriz prática</h4><p>Avalie cada possível ICP em cinco dimensões: intensidade do problema, frequência do job, capacidade de obter valor, disposição para pagar e custo de servir. Acrescente acesso de go-to-market e alinhamento com capacidades distintas. Use evidência por coorte e entrevistas, não notas inventadas para produzir ranking.</p><p>Personas dentro do ICP podem conflitar. Em software remoto, managers querem visibilidade; contributors querem autonomia; Finance quer precisão. A estratégia não precisa satisfazer todos igualmente, mas o design precisa administrar o conflito. Defina o comportamento principal e guardrails por papel.</p><aside class="callout error"><strong>Diagnóstico enganoso.</strong> “Enterprise não usa” pode significar que admins nunca concluíram configuração; “SMB ama” pode significar poucos power users vocais. Sempre conecte segmento, exposição, activation e retention.</aside><p>Para uma decisão específica, escreva: “Nosso ICP é X porque Y; a persona focal é Z no contexto W; analisaremos separadamente o segmento Q”. Essa frase elimina três ambiguidades de uma vez.</p></section>`,
   'capitulo-9': `<section class="field-notes"><h3>Um plano de evidência</h3><p>Antes de abrir dashboards ou marcar entrevistas, escreva a decisão e a evidência mínima. Para saber se vale melhorar busca, descubra quem busca, que intenção possui, se encontra resultado, qual consequência da falha e se o problema pertence ao ICP. Search logs dão volume; sessões mostram reformulação; entrevistas revelam o job; tickets mostram severidade. Cada fonte responde uma parte.</p><p>Monte uma matriz com linhas de hipótese e colunas de fonte. Preencha o que confirma, contradiz e permanece desconhecido. Se users dizem que exportação é crítica, mas ninguém exporta, talvez o job seja raro, o fluxo seja impossível de descobrir ou a fala represente buyer enquanto o dado representa end user. A divergência produz investigação.</p><p>Considere recência e independência. Dez tickets da mesma conta após um incidente não são dez padrões. Sales notes copiadas entre oportunidades não são entrevistas independentes. Marque origem, data e segmento.</p><aside class="callout framework"><strong>Confiança.</strong> Baixa: sinais indiretos. Média: fontes independentes convergem no público previsto. Alta: comportamento e consequência observados em escala e profundidade. Nenhuma significa certeza.</aside><p>Discovery termina para uma decisão. Você pode saber o bastante para gastar uma semana e não um trimestre. Essa calibração evita research infinito e confiança teatral.</p></section>`,
   'capitulo-10': `<section class="field-notes"><h3>Uma interface entre Sales e Product</h3><p>Um registro de sinal deve pedir conta, ICP, estágio, valor, job, consequência, alternativa e evidência de que a barreira mudou a compra. Não peça ao vendedor research completo; peça contexto para Product agrupar e escolher onde aprofundar.</p><p>Revise padrões, não cada pedido. Mostre sinais independentes, segmentos, estágio e revenue at risk. Inclua o aprendizado e a decisão: explorar, apoiar com workaround, levar a design partners, construir ou não agora. Fechar o loop melhora os registros futuros.</p><p>Meça falsos positivos. O prospect que disse que compraria com a feature comprou? Contas que receberam exceções adotaram e renovaram? Sem retorno, a organização aprende que prometer funciona, não se a capacidade produz valor.</p><p>Sales precisa de resposta hoje; Product protege o mercado futuro. Uma saída pode conter ambos: integração temporária para negócio relevante e discovery de capacidade genérica, com limites. A solução comercial não precisa virar core.</p><aside class="callout interview"><strong>Em entrevista.</strong> Não retrate Sales como fonte de pedidos ruins. Reconheça incentivos, proponha um sistema de evidência e ainda decida o caso.</aside></section>`,
   'capitulo-11': `<section class="field-notes"><h3>Roteiro, amostra e síntese</h3><p>Se quer entender abandono de trial, recrute quem abandonou em pontos diferentes, quem ativou e quem escolheu alternativa. Misturar todos sem rótulo apaga contraste. Entrevistas revelam mecanismos; não estimam prevalência.</p><p>Abra com contexto, peça o último episódio e caminhe cronologicamente usando “o que aconteceu depois?”. Evite explicar o produto para preencher silêncio. No fim, teste sua síntese e pergunte o que deixou de perguntar.</p><p>Analise episódio, comportamento, consequência, workaround e papel. Agrupe por segmento. Mantenha citações curtas como ilustração, não como manchete. Registre casos negativos em que o problema não apareceu.</p><p>Se mostrar solução, separe as fases. Primeiro reconstrua comportamento. Depois apresente o prototype por meio de tarefas. Observe expectativa, erro, recuperação e linguagem; não pergunte somente se gostou.</p><aside class="callout error"><strong>Sinal de indução.</strong> Muitas respostas “sim” a frases do moderador e poucos episódios detalhados significam que a entrevista validou sua eloquência.</aside></section>`,
