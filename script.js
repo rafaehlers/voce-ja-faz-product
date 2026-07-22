@@ -1,6 +1,7 @@
 'use strict';
 
 const bookLocale = document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'pt-BR';
+const readingPositionKey = `pm-book-position-${bookLocale}`;
 const bookCopy = bookLocale === 'en' ? {
   lightTheme: 'Light theme',
   darkTheme: 'Dark theme',
@@ -59,11 +60,13 @@ function updateReadingPosition() {
   const ratio = max > 0 ? scrollY / max : 0;
   ui.progress.style.width = `${Math.min(100, ratio * 100)}%`;
   ui.top.classList.toggle('visible', scrollY > 700);
-  localStorage.setItem('pm-book-position', String(scrollY));
+  localStorage.setItem(readingPositionKey, String(scrollY));
 }
 
 function renderBook() {
   BOOK_PARTS.sort((a, b) => Number(a.id.split('-')[1]) - Number(b.id.split('-')[1]));
+  const chapterSequence = BOOK_PARTS.flatMap(part => part.chapters);
+  const chapterPositions = new Map(chapterSequence.map((chapter, index) => [chapter.id, index]));
   document.getElementById('abertura').innerHTML = openingContent;
   document.getElementById('introducao').innerHTML = introductionContent;
   document.getElementById('conclusao').innerHTML = conclusionContent;
@@ -73,9 +76,10 @@ function renderBook() {
       <p class="chapter-kicker">${part.title.split(' — ')[0]}</p>
       <h2>${part.title.split(' — ')[1]}</h2>
     </section>
-    ${part.chapters.map((chapter, index) => {
-      const previous = index > 0 ? part.chapters[index - 1] : null;
-      const next = index < part.chapters.length - 1 ? part.chapters[index + 1] : null;
+    ${part.chapters.map(chapter => {
+      const index = chapterPositions.get(chapter.id);
+      const previous = index > 0 ? chapterSequence[index - 1] : null;
+      const next = index < chapterSequence.length - 1 ? chapterSequence[index + 1] : null;
       return `<section id="${chapter.id}" class="chapter" data-title="${bookCopy.chapter} ${chapter.number} — ${chapter.title}">
         <header class="chapter-opening"><p class="chapter-kicker">${bookCopy.chapter} ${String(chapter.number).padStart(2, '0')}</p><h2>${chapter.title}</h2></header>
         ${chapter.content}
@@ -296,7 +300,9 @@ function initializeBook() {
   enhanceGlossaryTerms();
   setupSectionObserver();
   setTheme(localStorage.getItem('pm-book-theme') || 'light');
-  const position = Number(localStorage.getItem('pm-book-position') || 0);
+  const savedPosition = localStorage.getItem(readingPositionKey)
+    ?? (bookLocale === 'pt-BR' ? localStorage.getItem('pm-book-position') : null);
+  const position = Number(savedPosition || 0);
   if (!location.hash && position > 0) requestAnimationFrame(() => scrollTo(0, position));
 }
 

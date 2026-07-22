@@ -1,8 +1,10 @@
 # Você Já Faz Product
 
-Livro digital estático, escrito em português do Brasil e projetado para leitura no navegador, impressão em A4 ou exportação como PDF.
+Livro digital estático em português do Brasil e inglês, projetado para leitura no navegador, impressão em A4 ou exportação como PDF.
 
 **[Ler o livro online →](https://rafaehlers.github.io/voce-ja-faz-product/)**
+
+**[Read the English edition →](https://rafaehlers.github.io/voce-ja-faz-product/en/)**
 
 ## Abrir
 
@@ -10,11 +12,12 @@ Abra `index.html` diretamente em um navegador moderno. O projeto não exige inst
 
 ## Arquivos
 
-- `index.html`: estrutura semântica e conteúdo do livro.
+- `index.html`: estrutura semântica da edição em português.
 - `styles.css`: design editorial, responsividade, temas e impressão.
 - `content.js`: texto integral, casos, glossário e diagramas do livro.
 - `script.js`: renderização, sumário, busca, progresso, tema e persistência local.
 - `assets/capa-voce-ja-faz-product.png`: capa ilustrada usada na primeira página.
+- `en/`: edição integral em inglês, com conteúdo, glossário, capa e ajustes de impressão próprios.
 
 ## Recursos de leitura
 
