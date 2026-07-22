@@ -58,7 +58,8 @@ function renderBook() {
   `).join('');
 
   const tocItems = [
-    { id: 'capa', title: 'Capa' },
+    { id: 'capa-imagem', title: 'Capa' },
+    { id: 'capa', title: 'Folha de rosto' },
     { id: 'abertura', title: 'Nota ao leitor' },
     { id: 'introducao', title: 'Introdução' },
     ...BOOK_PARTS.flatMap(part => [
@@ -79,7 +80,7 @@ function findFirstTermOccurrence(entry) {
         ? `${entry[0]}es`
         : `${entry[0]}s`;
   const aliases = [entry[0], plural, entry[1]].filter(Boolean).sort((a, b) => b.length - a.length);
-  const sections = document.querySelectorAll('.chapter:not(.part-opening):not(#capa):not(#capitulo-28)');
+  const sections = document.querySelectorAll('.chapter:not(.part-opening):not(#capa-imagem):not(#capa):not(#capitulo-28)');
 
   for (const section of sections) {
     const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT);

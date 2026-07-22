@@ -12,6 +12,7 @@ Abra `index.html` diretamente em um navegador moderno. O projeto não exige inst
 - `styles.css`: design editorial, responsividade, temas e impressão.
 - `content.js`: texto integral, casos, glossário e diagramas do livro.
 - `script.js`: renderização, sumário, busca, progresso, tema e persistência local.
+- `assets/capa-voce-ja-faz-product.png`: capa ilustrada usada na primeira página.
 
 ## Recursos de leitura
 

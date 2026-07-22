@@ -67,6 +67,8 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid 
 .part-opening { min-height: 72vh; display: flex; flex-direction: column; justify-content: center; border-top: 0 !important; }
 .part-opening h2 { max-width: 11ch; font-size: clamp(3.5rem, 8vw, 7.5rem); }
 .closing-line { margin-top: 4rem !important; color: var(--indigo); font-size: 1.7rem; font-style: italic; }
+.image-cover { width: min(100% - 3rem, 58rem); min-height: calc(100vh - var(--toolbar)); display: grid; place-items: center; padding: 2.5rem 0; border-top: 0 !important; }
+.image-cover img { display: block; width: auto; max-width: 100%; max-height: calc(100vh - var(--toolbar) - 5rem); box-shadow: 0 1.25rem 3.5rem rgb(43 36 25 / .16); }
 .cover { min-height: calc(100vh - var(--toolbar)); display: flex; flex-direction: column; justify-content: center; }
 .cover h1 { max-width: 13ch; margin: 1rem 0 2rem; color: var(--indigo); font-size: clamp(3rem, 7vw, 6.6rem); line-height: .92; letter-spacing: -.055em; }
 .cover-subtitle { max-width: 38rem; font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.45; }
@@ -219,12 +221,18 @@ tbody tr:nth-child(even) { background: color-mix(in srgb, var(--indigo-soft) 25%
   @bottom-left { content: "Rafael de Menezes Ehlers"; color: #666; font: 7pt system-ui, sans-serif; }
   @bottom-center { content: counter(page); color: #666; font: 7pt system-ui, sans-serif; }
 }
+@page book-cover {
+  size: A4;
+  margin: 0;
+}
 @media print {
   .book-toolbar, .sidebar, .reading-progress, .top-button, .search-dialog, .skip-link, .term-popover { display: none !important; }
   body { background: white; color: black; font-size: 10.5pt; }
   .book-content { margin: 0; padding: 0; }
   .chapter { width: auto; margin: 0; padding: 0; break-before: page; }
-  .cover { min-height: 245mm; break-before: auto; }
+  .image-cover { page: book-cover; display: block; width: 210mm; height: 297mm; min-height: 0; margin: 0; padding: 0; break-before: auto; break-after: page; }
+  .image-cover img { width: 210mm; height: 297mm; max-width: none; max-height: none; object-fit: cover; box-shadow: none; }
+  .cover { min-height: 245mm; break-before: page; }
   .chapter h2 { color: black; font-size: 30pt; }
   .part-opening { min-height: 220mm; }
   .part-opening h2 { font-size: 42pt; }
