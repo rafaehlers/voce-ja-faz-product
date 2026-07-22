@@ -70,6 +70,61 @@ function renderBook() {
   ui.toc.innerHTML = tocItems.map(item => `<a href="#${item.id}"${item.part ? ' class="part-link"' : ''}>${item.title}</a>`).join('');
 }
 
+function findFirstTermOccurrence(entry) {
+  const plural = entry[0].endsWith('s')
+    ? ''
+    : entry[0].match(/[^aeiou]y$/i)
+      ? `${entry[0].slice(0, -1)}ies`
+      : entry[0].match(/(x|z|ch|sh)$/i)
+        ? `${entry[0]}es`
+        : `${entry[0]}s`;
+  const aliases = [entry[0], plural, entry[1]].filter(Boolean).sort((a, b) => b.length - a.length);
+  const sections = document.querySelectorAll('.chapter:not(.part-opening):not(#capa):not(#capitulo-28)');
+
+  for (const section of sections) {
+    const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT);
+    let node;
+    while ((node = walker.nextNode())) {
+      const parent = node.parentElement;
+      if (!parent || parent.closest('a, script, style, .term-introduction, .chapter-navigation')) continue;
+
+      for (const alias of aliases) {
+        const escaped = alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const match = node.textContent.match(new RegExp(`\\b${escaped}\\b`, 'i'));
+        if (match) return { node, index: match.index, length: match[0].length, label: match[0] };
+      }
+    }
+  }
+  return null;
+}
+
+function enhanceGlossaryTerms() {
+  const orderedEntries = [...GLOSSARY].sort((a, b) => Math.max(b[0].length, b[1]?.length || 0) - Math.max(a[0].length, a[1]?.length || 0));
+
+  orderedEntries.forEach(entry => {
+    const occurrence = findFirstTermOccurrence(entry);
+    if (!occurrence) return;
+
+    const { node, index, length, label } = occurrence;
+    const link = document.createElement('a');
+    link.className = 'term-link';
+    link.href = `#term-${termSlug(entry[0])}`;
+    link.textContent = label;
+    link.setAttribute('aria-label', `${label}: ver tradução e definição no glossário`);
+
+    const before = node.textContent.slice(0, index);
+    const after = node.textContent.slice(index + length);
+    const structuredContainer = node.parentElement.closest('.diagram, .table-wrap, .comparison, .scenario-grid, .risk-grid, .term-grid, .experiment-brief, .decision-checklist, .interview-case, .experiment-ladder');
+    const localBlock = node.parentElement.closest('p, li, dd, blockquote, .callout') || node.parentElement;
+    const block = structuredContainer || (localBlock.matches('li, dd') ? (localBlock.closest('ul, ol, dl') || localBlock) : localBlock);
+    node.replaceWith(document.createTextNode(before), link, document.createTextNode(after));
+
+    if (!document.getElementById(`intro-${termSlug(entry[0])}`)) {
+      block.insertAdjacentHTML('afterend', termIntroductionHtml(entry));
+    }
+  });
+}
+
 function setupSectionObserver() {
   const links = new Map([...ui.toc.querySelectorAll('a')].map(link => [link.hash.slice(1), link]));
   const observer = new IntersectionObserver(entries => {
@@ -119,6 +174,7 @@ function closeSearchDialog() {
 
 function initializeBook() {
   renderBook();
+  enhanceGlossaryTerms();
   setupSectionObserver();
   setTheme(localStorage.getItem('pm-book-theme') || 'light');
   const position = Number(localStorage.getItem('pm-book-position') || 0);

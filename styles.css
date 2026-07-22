@@ -93,6 +93,14 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid 
 .callout.takeaway { border-left-color: var(--sage); background: color-mix(in srgb, var(--sage) 9%, transparent); }
 .callout.takeaway strong:first-child { color: var(--sage); }
 .callout.exercise, .callout.interview { border-left-color: var(--ochre); }
+.term-link { color: inherit !important; text-decoration: underline dotted var(--ochre) 2px !important; text-underline-offset: .18em !important; }
+.term-link::after { content: " ↘"; color: var(--ochre); font: 700 .68em/1 system-ui, sans-serif; }
+.term-introduction { position: relative; margin: 2.4rem 0; padding: 1.35rem 0 1.35rem 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); border-left: 4px solid var(--ochre); background: linear-gradient(90deg, color-mix(in srgb, var(--ochre) 9%, transparent), transparent 72%); break-inside: avoid; }
+.term-introduction .term-kicker { margin: 0 0 .4rem !important; color: var(--ochre); font: 800 .68rem/1.3 system-ui, sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+.term-introduction h3 { margin: 0 0 .7rem; color: var(--indigo); font-size: 1.15rem; }
+.term-introduction p { margin-bottom: .8rem; font-size: .96rem; line-height: 1.65; }
+.term-introduction .term-literal, .literal-translation { color: var(--muted); font-family: system-ui, sans-serif; }
+.term-introduction > a { font: 700 .78rem/1.4 system-ui, sans-serif; }
 .field-notes { margin-top: 4rem; padding-top: 2.5rem; border-top: 3px double var(--line); }
 .field-notes > h3:first-child { margin-top: 0; color: var(--indigo); }
 blockquote { margin: 2rem 0; padding: .5rem 0 .5rem 1.5rem; border-left: 2px solid var(--ochre); color: var(--muted); font-size: 1.08rem; font-style: italic; }
@@ -173,6 +181,7 @@ tbody tr:nth-child(even) { background: color-mix(in srgb, var(--indigo-soft) 25%
 .glossary-entry h4 { margin: 0 0 .45rem; color: var(--indigo); font-size: 1.05rem; }
 .glossary-entry h4 span { color: var(--ochre); font-size: .72rem; }
 .glossary-entry p { margin: .2rem 0; font-size: .92rem; }
+.glossary-entry .literal-translation { margin-bottom: .7rem; color: var(--ochre); font-size: .8rem; }
 
 @media (max-width: 800px) {
   :root { --toolbar: 7rem; }
@@ -222,10 +231,12 @@ tbody tr:nth-child(even) { background: color-mix(in srgb, var(--indigo-soft) 25%
   .table-wrap, .request-flow, .metric-flow, .interview-framework, .icp-persona { width: 100%; max-width: none; margin: 5mm 0; transform: none; overflow: visible; }
   table { font-size: 7.5pt; }
   th, td { padding: 4pt; }
-  tr, .diagram, .callout, .answer, .glossary-entry, .experiment-brief { break-inside: avoid; }
+  tr, .diagram, .callout, .term-introduction, .answer, .glossary-entry, .experiment-brief { break-inside: avoid; }
   .callout, .diagram, .answer, .experiment-brief { background: transparent !important; border-color: #666 !important; }
   .node, .node.accent { background: white !important; color: black !important; border-color: #555 !important; }
   .alphabet { display: none; }
   .gloss-letter { color: black !important; }
+  .term-link::after { content: ""; }
+  .term-introduction { background: transparent !important; border-color: #666 !important; }
   .field-notes { border-color: #777; }
 }
