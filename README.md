@@ -2,6 +2,8 @@
 
 Livro digital estático, escrito em português do Brasil e projetado para leitura no navegador, impressão em A4 ou exportação como PDF.
 
+**[Ler o livro online →](https://rafaehlers.github.io/voce-ja-faz-product/)**
+
 ## Abrir
 
 Abra `index.html` diretamente em um navegador moderno. O projeto não exige instalação, servidor, internet ou dependências externas.
