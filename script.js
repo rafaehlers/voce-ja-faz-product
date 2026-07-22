@@ -1,5 +1,36 @@
 'use strict';
 
+const bookLocale = document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'pt-BR';
+const bookCopy = bookLocale === 'en' ? {
+  lightTheme: 'Light theme',
+  darkTheme: 'Dark theme',
+  chapter: 'Chapter',
+  chapterNavigation: 'Chapter navigation',
+  cover: 'Cover',
+  titlePage: 'Title page',
+  readerNote: 'A note to the reader',
+  introduction: 'Introduction',
+  conclusion: 'Conclusion',
+  showTerm: label => `${label}: show plain-English explanation`,
+  section: 'Section',
+  result: count => `${count} result${count === 1 ? '' : 's'}`,
+  noResults: 'No occurrences found.'
+} : {
+  lightTheme: 'Tema claro',
+  darkTheme: 'Tema escuro',
+  chapter: 'Capítulo',
+  chapterNavigation: 'Navegação entre capítulos',
+  cover: 'Capa',
+  titlePage: 'Folha de rosto',
+  readerNote: 'Nota ao leitor',
+  introduction: 'Introdução',
+  conclusion: 'Conclusão',
+  showTerm: label => `${label}: mostrar tradução e explicação`,
+  section: 'Seção',
+  result: count => `${count} resultado${count === 1 ? '' : 's'}`,
+  noResults: 'Nenhuma ocorrência encontrada.'
+};
+
 const ui = {
   root: document.documentElement,
   chapters: document.getElementById('bookChapters'),
@@ -19,7 +50,7 @@ const ui = {
 
 function setTheme(theme) {
   ui.root.dataset.theme = theme;
-  ui.theme.textContent = theme === 'dark' ? 'Tema claro' : 'Tema escuro';
+  ui.theme.textContent = theme === 'dark' ? bookCopy.lightTheme : bookCopy.darkTheme;
   localStorage.setItem('pm-book-theme', theme);
 }
 
@@ -45,11 +76,11 @@ function renderBook() {
     ${part.chapters.map((chapter, index) => {
       const previous = index > 0 ? part.chapters[index - 1] : null;
       const next = index < part.chapters.length - 1 ? part.chapters[index + 1] : null;
-      return `<section id="${chapter.id}" class="chapter" data-title="Capítulo ${chapter.number} — ${chapter.title}">
-        <header class="chapter-opening"><p class="chapter-kicker">Capítulo ${String(chapter.number).padStart(2, '0')}</p><h2>${chapter.title}</h2></header>
+      return `<section id="${chapter.id}" class="chapter" data-title="${bookCopy.chapter} ${chapter.number} — ${chapter.title}">
+        <header class="chapter-opening"><p class="chapter-kicker">${bookCopy.chapter} ${String(chapter.number).padStart(2, '0')}</p><h2>${chapter.title}</h2></header>
         ${chapter.content}
         ${CHAPTER_NOTEBOOKS[chapter.id] || ''}
-        <nav class="chapter-navigation" aria-label="Navegação entre capítulos">
+        <nav class="chapter-navigation" aria-label="${bookCopy.chapterNavigation}">
           ${previous ? `<a href="#${previous.id}">← ${previous.title}</a>` : '<span></span>'}
           ${next ? `<a href="#${next.id}">${next.title} →</a>` : '<span></span>'}
         </nav>
@@ -58,15 +89,15 @@ function renderBook() {
   `).join('');
 
   const tocItems = [
-    { id: 'capa-imagem', title: 'Capa' },
-    { id: 'capa', title: 'Folha de rosto' },
-    { id: 'abertura', title: 'Nota ao leitor' },
-    { id: 'introducao', title: 'Introdução' },
+    { id: 'capa-imagem', title: bookCopy.cover },
+    { id: 'capa', title: bookCopy.titlePage },
+    { id: 'abertura', title: bookCopy.readerNote },
+    { id: 'introducao', title: bookCopy.introduction },
     ...BOOK_PARTS.flatMap(part => [
       { id: part.id, title: part.title, part: true },
       ...part.chapters.map(chapter => ({ id: chapter.id, title: `${chapter.number}. ${chapter.title}` }))
     ]),
-    { id: 'conclusao', title: 'Conclusão', part: true }
+    { id: 'conclusao', title: bookCopy.conclusion, part: true }
   ];
   ui.toc.innerHTML = tocItems.map(item => `<a href="#${item.id}"${item.part ? ' class="part-link"' : ''}>${item.title}</a>`).join('');
 }
@@ -181,7 +212,7 @@ function enhanceGlossaryTerms() {
     trigger.type = 'button';
     trigger.className = 'term-link';
     trigger.textContent = label;
-    trigger.setAttribute('aria-label', `${label}: mostrar tradução e explicação`);
+    trigger.setAttribute('aria-label', bookCopy.showTerm(label));
     trigger.setAttribute('aria-controls', 'termPopover');
     trigger.setAttribute('aria-expanded', 'false');
     trigger.addEventListener('pointerenter', () => showPopover(trigger, entry));
@@ -234,7 +265,7 @@ function plainText(element) {
 }
 
 function runSearch(query) {
-  const normalized = query.trim().toLocaleLowerCase('pt-BR');
+  const normalized = query.trim().toLocaleLowerCase(bookLocale);
   if (normalized.length < 2) {
     ui.searchStatus.textContent = '';
     ui.dialog.hidden = true;
@@ -242,16 +273,16 @@ function runSearch(query) {
   }
   const matches = [...document.querySelectorAll('.chapter')].flatMap(section => {
     const text = plainText(section);
-    const lower = text.toLocaleLowerCase('pt-BR');
+    const lower = text.toLocaleLowerCase(bookLocale);
     const index = lower.indexOf(normalized);
     if (index < 0) return [];
     const start = Math.max(0, index - 72);
     const end = Math.min(text.length, index + normalized.length + 125);
-    return [{ id: section.id, title: section.dataset.title || 'Seção', excerpt: `${start ? '…' : ''}${text.slice(start, end)}${end < text.length ? '…' : ''}` }];
+    return [{ id: section.id, title: section.dataset.title || bookCopy.section, excerpt: `${start ? '…' : ''}${text.slice(start, end)}${end < text.length ? '…' : ''}` }];
   }).slice(0, 40);
 
-  ui.searchStatus.textContent = `${matches.length} resultado${matches.length === 1 ? '' : 's'}`;
-  ui.results.innerHTML = matches.length ? matches.map(item => `<a class="search-result" href="#${item.id}"><strong>${item.title}</strong><span>${item.excerpt}</span></a>`).join('') : '<p class="search-empty">Nenhuma ocorrência encontrada.</p>';
+  ui.searchStatus.textContent = bookCopy.result(matches.length);
+  ui.results.innerHTML = matches.length ? matches.map(item => `<a class="search-result" href="#${item.id}"><strong>${item.title}</strong><span>${item.excerpt}</span></a>`).join('') : `<p class="search-empty">${bookCopy.noResults}</p>`;
   ui.dialog.hidden = false;
 }
 

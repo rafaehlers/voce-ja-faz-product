@@ -42,6 +42,7 @@ button, input { font: inherit; }
 .search-wrap input { width: 100%; padding: .65rem .9rem; color: var(--ink); background: var(--paper-raised); border: 1px solid var(--line); border-radius: .25rem; }
 .search-status { position: absolute; right: .7rem; top: .72rem; color: var(--muted); font: .75rem system-ui, sans-serif; }
 .toolbar-button, .search-panel button { padding: .6rem .8rem; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: .25rem; cursor: pointer; font-family: system-ui, sans-serif; font-size: .82rem; }
+.language-link { white-space: nowrap; text-decoration: none; }
 .toolbar-button:hover, .toolbar-button:focus-visible { border-color: var(--indigo); color: var(--indigo); }
 button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid color-mix(in srgb, var(--indigo) 45%, transparent); outline-offset: 3px; }
 .sidebar { position: fixed; z-index: 75; inset: 0 auto 0 0; width: var(--sidebar); overflow-y: auto; padding: 1.5rem 1rem; background: #292943; color: #f6f2e9; }
